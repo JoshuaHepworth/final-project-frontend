@@ -10,14 +10,13 @@ class MainContainer extends Component {
 	        articles: []
 	    }
 	}
-	fetchArticles = async () => {
-		const response = await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey='+ apiKey, {
-			credentials: 'include'
-		})
+	async fetchArticles() {
+		const response = await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey='+ apiKey)
 		const parsed = await response.json();
 		this.setState({
 			articles: parsed.articles
 		})
+			console.log(parsed.articles)
 	}
 	componentDidMount(){
 		this.fetchArticles();
