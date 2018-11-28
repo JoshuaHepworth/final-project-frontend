@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MainContainer from './MainContainer'
+import LoginRegister from './LoginRegister'
+import {Route, Switch} from 'react-router-dom'
 
 class App extends Component {
   constructor(){
