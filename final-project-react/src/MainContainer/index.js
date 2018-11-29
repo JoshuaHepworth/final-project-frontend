@@ -6,6 +6,7 @@ import {Route, Switch} from 'react-router-dom'
 import MyComments from '../MyComments'
 import MyArticles from '../MyArticles'
 import SwitchController from '../SwitchController'
+import Search from '../Search'
 
 const apiKey = 'c2060d4c459b4dc3ab9fe16b4b16c82c'
 
@@ -25,8 +26,21 @@ class MainContainer extends Component {
 		})
 			console.log(parsed.articles)
 	}
+	async fetchArticlesSearched(search) {
+		const userSearch = search
+		const response = await fetch('https://newsapi.org/v2/top-headlines?sources=' + userSearch+'&apiKey='+ apiKey)
+		const parsed = await response.json();
+			this.setState({
+				articles: parsed.articles
+			})
+	}
 	componentDidMount(){
 		this.fetchArticles();
+	}
+	getResults = (query) => {
+		const userQuery = query;
+		this.fetchArticlesSearched(userQuery).then((articles) => {
+		})
 	}
     render(){
     	const articleList = this.state.articles.map((article, i) => {
@@ -49,6 +63,7 @@ class MainContainer extends Component {
     	})
         return(
         	<div>
+        		<Search getResults={this.getResults} />
       			<SwitchController />
         		<HeaderApp Logout={this.props.Logout}/>
 
