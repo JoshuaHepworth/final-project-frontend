@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import HeaderApp from '../HeaderApp'
+import { Segment, Header, Grid, Image } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
+import MyComments from '../MyComments'
+import MyArticles from '../MyArticles'
+import SwitchController from '../SwitchController'
 
 const apiKey = 'c2060d4c459b4dc3ab9fe16b4b16c82c'
 
@@ -7,7 +13,8 @@ class MainContainer extends Component {
 	constructor(){
 	    super();
 	    this.state = {
-	        articles: []
+	        articles: [],
+	        clickedComments: false
 	    }
 	}
 	async fetchArticles() {
@@ -22,11 +29,32 @@ class MainContainer extends Component {
 		this.fetchArticles();
 	}
     render(){
+    	const articleList = this.state.articles.map((article, i) => {
+    		return (
+    				<div>
+    					<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
+        				<Grid.Column style={{maxWidth: 600}}>
+    							<Segment>
+    								<Image key={i} src={article.urlToImage} />
+    								<h2> {article.source.name} </h2>
+    								<Header>By:  {article.author} </Header>
+    								<h2> {article.title} </h2>
+    								<h2> {article.description} </h2>
+    								<a href={article.url}>Full article</a>
+    							</Segment>
+    						</Grid.Column>
+	    				</Grid>	
+    				</div>
+    			)
+    	})
         return(
         	<div>
+      			<SwitchController />
         		<HeaderApp Logout={this.props.Logout}/>
-            <h1> Main Container </h1>
-          </div>
+
+            <h1> Top Headlines </h1>
+            {articleList}
+		      </div>
         )
     }
 }

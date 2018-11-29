@@ -29,10 +29,10 @@ class HeaderApp extends Component {
             	<Link to='/home'>Home</Link>
             </Menu.Item>
             <Menu.Item>
-            	<Link to='/comments'>My Comments</Link>
+            	<Link to='/mycomments'>My Comments</Link>
             </Menu.Item>
             <Menu.Item>
-            	<Link to='/articles'>My Articles</Link>
+            	<Link to='/myarticles'>My Articles</Link>
             </Menu.Item>
             </Menu>
         )
