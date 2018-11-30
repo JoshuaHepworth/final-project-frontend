@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react'
+import './styles.css'
 
 class Search extends Component {
 	constructor(){
@@ -20,10 +21,10 @@ class Search extends Component {
     render(){
         return(
         	<div>
-          	<Form onSubmit={this.handleSubmit}>
-						<Form.Input onChange={this.handleChange} type="text" value={this.state.search} name='search' placeholder="Search News Sources"/>
-          		<Button type="submit">Search</Button>
-      			</Form>
+          	<form onSubmit={this.handleSubmit}>
+						<input onChange={this.handleChange} type="text" value={this.state.search} name='search' placeholder=" Search News..."/>
+          		<Button color="green"type="submit">Search</Button>
+      			</form>
       		</div>
 
         )

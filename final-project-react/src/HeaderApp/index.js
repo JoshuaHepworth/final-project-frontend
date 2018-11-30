@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Menu, Grid, Form, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import './styles.css'
+import SwitchController from '../SwitchController'
+import {Route, Switch} from 'react-router-dom'
+import MyComments from '../MyComments'
+import MyArticles from '../MyArticles'
+import MainContainer from '../MainContainer'
 
 class HeaderApp extends Component {
+	
 	handleLogout = async (e) => {
   	e.preventDefault()
 
@@ -21,10 +28,13 @@ class HeaderApp extends Component {
 		}
     render(){
         return(
-        	<Menu>
-        		<Form onSubmit={this.handleLogout}>
+        	<div>
+        	<Menu inverted >
+        		<Menu.Item>
+        		<Form textAlign="right"onSubmit={this.handleLogout}>
         			<Button className="visibile content"color="red"type="submit">Logout</Button>
       			</Form>
+      			</Menu.Item>
       			<Menu.Item>
             	<Link to='/home'>Home</Link>
             </Menu.Item>
@@ -34,7 +44,10 @@ class HeaderApp extends Component {
             <Menu.Item>
             	<Link to='/myarticles'>My Articles</Link>
             </Menu.Item>
+            
             </Menu>
+            
+            </div>
         )
     }
 }

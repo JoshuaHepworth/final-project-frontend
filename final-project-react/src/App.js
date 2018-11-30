@@ -3,6 +3,8 @@ import './App.css';
 import MainContainer from './MainContainer'
 import LoginRegister from './LoginRegister'
 import {Route, Switch} from 'react-router-dom'
+import MyComments from './MyComments'
+import SwitchController from './SwitchController'
 
 class App extends Component {
   constructor(){
@@ -26,10 +28,12 @@ class App extends Component {
       username: username
     })
   }
+
   render() {
     return (
       <div className="App">
       { this.state.loggedIn ? <MainContainer Logout={this.Logout}/> : <LoginRegister LogIn={this.LogIn}/> }
+      
       </div>
     );
   }
