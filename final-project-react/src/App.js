@@ -28,12 +28,24 @@ class App extends Component {
       username: username
     })
   }
-
+  componentDidMount(){
+    fetch('http://localhost:9292/api/user', {
+      credentials: 'include'
+    }).then((response) => {
+      return response.json()  
+    }).then((parsedResponse) => {
+      this.setState({
+        loggedIn: true
+      })
+    }).catch((err) => {
+      console.error(err)
+    })
+  }
   render() {
     return (
       <div className="App">
       { this.state.loggedIn ? <MainContainer Logout={this.Logout}/> : <LoginRegister LogIn={this.LogIn}/> }
-      
+
       </div>
     );
   }

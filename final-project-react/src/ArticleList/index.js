@@ -83,9 +83,10 @@ class ArticleList extends Component {
   							<Segment>
   								<Image id={article.source.id} src={article.urlToImage} />
   								<h2> {article.source.name} </h2>
-  								<Header>By:  {article.author} </Header>
-  								<h2> {article.title} </h2>
+  								<Header>{article.author} </Header>
+  								<h1> {article.title} </h1>
   								<h3> {article.description} </h3>
+  								<h4> {article.content} </h4>
   								<a href={article.url}>Full article</a>
   								<Button id={article.source.id} data-index={i} color="yellow" onClick={this.handleSave}>Save</Button>
   							</Segment>
