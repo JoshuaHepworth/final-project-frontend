@@ -57,7 +57,9 @@ class LoginRegister extends Component {
         		<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
         		<Grid.Column style={{maxWidth: 450}}>
         		<Segment>
+        			<div class="ui warning message">
         			<h1 className="invalid">{this.state.message}</h1>
+        			</div>
             	<h1> {this.state.which === "login" ? "Log in here" : "Register here"} </h1>
             		<Form onSubmit={this.handleSubmit}>
 		            	<input

@@ -25,7 +25,8 @@ class ArticleList extends Component {
         // name: '',
         articles: [],
         savedArticles: [],
-        message: ''
+        message: '',
+        activity: ''
 	    }
 	}
 	async fetchArticles() {
@@ -85,19 +86,35 @@ class ArticleList extends Component {
 	}
   render(){
   	const articleList = this.state.articles.map((article, i) => {
+  		const published = new Date(article.publishedAt)
+  		const date = published.toLocaleDateString()
   		return (
   				<div key={i}>
   					<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
       				<Grid.Column style={{maxWidth: 600}}>
   							<Segment>
+  		
+ 
   								<Image id={article.source.id} src={article.urlToImage} />
   								<h2> {article.source.name} </h2>
   								<Header>{article.author} </Header>
   								<h1> {article.title} </h1>
   								<h3> {article.description} </h3>
   								<h4> {article.content} </h4>
-  								<a href={article.url}>Full article</a>
-  								<Button id={article.source.id} data-index={i} color="yellow" onClick={this.handleSave}>Save</Button>
+  								<div class="ui buttons">
+  								<Button class="ui button"id={article.source.id} data-index={i} color="yellow" onClick={this.handleSave}>Save</Button>
+  								<div class="or"></div>
+  								<a class="item">
+							    <i class="icon mail"></i> Activity
+							    <div class="floating ui red label">23</div>
+							 		</a>
+							  	</div>
+  									<Button color="blue" class="ui button">View</Button>
+  								
+  								
+  								<h4> {date}</h4>
+  								<small>Check out the full article</small>
+  								<a className="link" href={article.url}> Here</a>
   							</Segment>
   						</Grid.Column>
     				</Grid>	
@@ -109,8 +126,13 @@ class ArticleList extends Component {
   	})
     return(
     	<div>
+    		<br/>
     		<Search getResults={this.getResults} />
-    		<h1 className="saved">{this.state.message}</h1>
+
+    		<div color="orange" class="ui success message">
+    			<h1>{this.state.message}</h1>
+        </div>
+            		
      	  <h1> Top Headlines </h1>
         {articleList}
       </div>

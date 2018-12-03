@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Segment, Header, Grid, Image, Button } from 'semantic-ui-react'
-
+import './styles.css'
 class MyArticles extends Component {
 	constructor(){
 	    super();
 	    this.state = {
 	        articles: [],
 	        user: '',
-	        articleDelete: ''
+	        articleDeleted: ''
 	    }
 	}
 	fetchArticles = async () => {
@@ -17,7 +17,7 @@ class MyArticles extends Component {
     	})
     	
     	const parsedResponse = await response.json();
-
+    	console.log(parsedResponse)
     	
 
     	this.setState({
@@ -47,30 +47,40 @@ class MyArticles extends Component {
     }
 		    
 	}
-	deleteArticle = async	(article) => {
-		// console.log(e.currentTarget.id)
-			// e.preventDefault()
-		try {
-			await fetch('http://localhost:9292/api/user/article/' + article, {
-				method: 'DELETE',
-				credentials: 'include',
-				body: JSON.stringify({
-					article
-				}),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			})
-		} catch (err) {
-			
-		}
-		console.log()
-		this.fetchArticles().then((articles) => {
-			this.setState({
-				articles: this.state.articles
-			})
+	async deleteArticle(id) { console.log("deleteArticle, id is: ", id)
+		// const userSearch = search
+		// const response = await fetch('https://newsapi.org/v2/everything?q=' + userSearch +'&apiKey='+ apiKey)
+		// const articleParsed = await response.json();
+		const deleteArticle = await fetch('http://localhost:9292/api/user/article/' + id , {
+			credentials: 'include',
+			method: 'DELETE',
+			body: JSON.stringify(id),
+			headers: {
+				'Content-Type': 'application/json'
+			}
 		})
+		const parsed = await deleteArticle.json();
+		console.log(parsed, 'this is parsed delete')
+		if (parsed.status === 200) {
+			// delete article from array
+
+			this.setState({
+				articleDeleted: parsed.article,
+				message: parsed.message
+			})
+			this.fetchArticles()
+			console.log(parsed.article, 'this is message parsed')
+		}
+		console.log(deleteArticle, 'this is delete article')
+
+	
 	}
+	handleDelete = (e) => {
+		const idx = e.currentTarget.dataset.index
+		const myArticle = this.state.articles[idx]
+		console.log(myArticle)
+		this.deleteArticle(myArticle.id)
+}
 	componentDidMount(){
 		this.fetchUser();
 		this.fetchArticles();
@@ -78,19 +88,26 @@ class MyArticles extends Component {
     render(){
     	console.log(this.deleteArticle)
     	const articles = this.state.articles.map((article, i) => {
+    	const published = new Date(article.published_at)
+  		const date = published.toLocaleDateString()
     		return (
   				<div key={i}>
 						<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
 	    				<Grid.Column style={{maxWidth: 600}}>
 								<Segment>
-									<Image id={article.source.id} src={article.urlToImage} />
+									<Image id={article.source} src={article.img_url} />
 									<h2> {article.source.name} </h2>
 									<Header>{article.author} </Header>
 									<h1> {article.title} </h1>
 									<h3> {article.description} </h3>
 									<h4> {article.content} </h4>
-									<a href={article.url}>Full article</a>
-									<Button  color="yellow" onClick={this.deleteArticle}>Delete</Button>
+									<Button color="blue">
+									<a className="article" href={article.article_url}>Full article</a>
+									</Button>
+									<Button id={article.id} data-index={i} color="red" onClick={this.handleDelete}>Delete</Button>
+									<br/>
+									<br/>
+									<small> Published {date} </small>
 								</Segment>
 							</Grid.Column>
 	  				</Grid>	
@@ -103,8 +120,15 @@ class MyArticles extends Component {
     	})
         return(
         	<div>
+            <div class="ui success message">
+            	<i class="close icon"></i>
+            	<div class="header">
+            	<h1>{this.state.message}</h1>
+            	</div>
+            </div>
             <h1> {this.state.user}'s articles </h1>
             {articles}
+            		
           </div>  
         )
     }

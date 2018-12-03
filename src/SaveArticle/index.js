@@ -45,7 +45,9 @@ class SaveArticle extends Component {
         return(
         		<div>
             	<Button color="yellow"onClick={this.handleSave}>Save</Button>
-            	<h3>{this.state.message}</h3>
+            	<div class="ui success message">
+            		<h3>{this.state.message}</h3>
+            	</div>
             </div>
         )
     }
