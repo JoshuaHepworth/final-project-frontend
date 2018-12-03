@@ -14,7 +14,8 @@ class SaveArticle extends Component {
         title: '',
         author: '',
         name: '',
-        article: []
+        article: [],
+        message: ''
     }
 	}
 	async handleSave(search) {
@@ -30,15 +31,22 @@ class SaveArticle extends Component {
 			})
 		})
 		const parsed = await saveArticle.json();
-		console.log(saveArticle, 'this is save article')
+			if (parsed.status === 200) {
 			this.setState({
+				message: parsed.message,
 				article: parsed.article
 			})
+			console.log(parsed.article, 'this is message parsed')
+		}
 	}
     render(){
-    	console.log(this.handleSave, 'This is the handleSave')
+    	console.log(this.state.message, 'tTHIS IS THE MESSAGE')
+    	// console.log(this.handleSave, 'This is the handleSave')
         return(
-            <Button color="yellow"onClick={this.handleSave}>Save</Button>
+        		<div>
+            	<Button color="yellow"onClick={this.handleSave}>Save</Button>
+            	<h3>{this.state.message}</h3>
+            </div>
         )
     }
 }

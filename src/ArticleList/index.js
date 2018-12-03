@@ -8,6 +8,7 @@ import MyArticles from '../MyArticles'
 import SwitchController from '../SwitchController'
 import Search from '../Search'
 import SaveArticle from '../SaveArticle'
+import './styles.css'
 
 const apiKey = 'c2060d4c459b4dc3ab9fe16b4b16c82c'
 
@@ -23,7 +24,8 @@ class ArticleList extends Component {
         // author: '',
         // name: '',
         articles: [],
-        savedArticles: []
+        savedArticles: [],
+        message: ''
 	    }
 	}
 	async fetchArticles() {
@@ -56,8 +58,15 @@ class ArticleList extends Component {
 				'Content-Type': 'application/json'
 			}
 		})
-		// const parsed = await saveArticle.json();
+		const parsed = await saveArticle.json();
+			if (parsed.status === 200) {
+			this.setState({
+				message: parsed.message,
+			})
+			console.log(parsed.article, 'this is message parsed')
+		}
 		console.log(saveArticle, 'this is save article')
+
 	
 	}
 	handleSave = (e) => {
@@ -101,6 +110,7 @@ class ArticleList extends Component {
     return(
     	<div>
     		<Search getResults={this.getResults} />
+    		<h1 className="saved">{this.state.message}</h1>
      	  <h1> Top Headlines </h1>
         {articleList}
       </div>
