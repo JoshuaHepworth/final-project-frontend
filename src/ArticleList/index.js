@@ -8,9 +8,10 @@ import MyArticles from '../MyArticles'
 import SwitchController from '../SwitchController'
 import Search from '../Search'
 import SaveArticle from '../SaveArticle'
+import ArticleView from '../ArticleView'
 import './styles.css'
 
-const apiKey = 'c2060d4c459b4dc3ab9fe16b4b16c82c'
+const apiKey = '46a2cf77ab8f462c903e3536c6e7502b'
 
 class ArticleList extends Component {
 	constructor(){
@@ -26,8 +27,19 @@ class ArticleList extends Component {
         articles: [],
         savedArticles: [],
         message: '',
-        activity: ''
+        activity: '',
+        showArticle: false
 	    }
+	}
+	fix = () => {
+		this.setState({
+			showArticle: false
+		})
+	}
+	displayArticle = () => {
+		this.setState({
+			showArticle: true
+		})
 	}
 	async fetchArticles() {
 		const response = await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey='+ apiKey)
@@ -85,6 +97,7 @@ class ArticleList extends Component {
 		})
 	}
   render(){
+  	console.log(this.state)
   	const articleList = this.state.articles.map((article, i) => {
   		const published = new Date(article.publishedAt)
   		const date = published.toLocaleDateString()
@@ -106,10 +119,10 @@ class ArticleList extends Component {
   								<div class="or"></div>
   								<a class="item">
 							    <i class="icon mail"></i> Activity
-							    <div class="floating ui red label">23</div>
+							    <div class="floating ui red label">Activity</div>
 							 		</a>
 							  	</div>
-  									<Button color="blue" class="ui button">View</Button>
+  									<Button onClick={this.displayArticle} color="blue" class="ui button">View</Button>
   								
   								
   								<h4> {date}</h4>
@@ -120,22 +133,30 @@ class ArticleList extends Component {
     				</Grid>	
     				<br/>
 						<br/>
-						<br/>
+						<br/> 
   				</div>
   			)
   	})
     return(
     	<div>
-    		<br/>
+
+    		{ !this.state.showArticle ?
+    		<div>
     		<Search getResults={this.getResults} />
 
-    		<div color="orange" class="ui success message">
-    			<h1>{this.state.message}</h1>
-        </div>
-            		
-     	  <h1> Top Headlines </h1>
-        {articleList}
-      </div>
+	    		<div color="orange" class="ui success message">
+	    			<h1>{this.state.message}</h1>
+	        </div>
+	            		
+	     	  <h1> Top Headlines </h1>
+
+	     	  {articleList} 
+     	  </div>
+     	: <ArticleView fix={this.fix} showArticle={this.state.showArticle} />}
+
+     	  
+     	 </div>
+
     )
   }
 }

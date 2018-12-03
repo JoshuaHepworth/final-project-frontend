@@ -14,11 +14,11 @@ class HeaderApp extends Component {
   	e.preventDefault()
 
   	const logoutResponse = await fetch('http://localhost:9292/api/user/logout', {
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+     credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
   	const parsedResponse = await logoutResponse.json()
 
   	if (parsedResponse.status === 200) {

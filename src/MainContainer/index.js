@@ -10,7 +10,7 @@ import SwitchController from '../SwitchController'
 import Search from '../Search'
 import SaveArticle from '../SaveArticle'
 
-const apiKey = 'c2060d4c459b4dc3ab9fe16b4b16c82c'
+const apiKey = '46a2cf77ab8f462c903e3536c6e7502b'
 
 const MainContainer = (props) => {
 
