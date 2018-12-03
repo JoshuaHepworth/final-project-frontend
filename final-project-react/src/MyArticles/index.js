@@ -15,10 +15,10 @@ class MyArticles extends Component {
     	const response = await fetch('http://localhost:9292/api/user/articles', {
     		credentials: 'include'
     	})
-    	console.log(response)
+    	
     	const parsedResponse = await response.json();
 
-    	console.log(parsedResponse, 'parsed response')
+    	
 
     	this.setState({
     		articles: parsedResponse.articles
@@ -47,24 +47,36 @@ class MyArticles extends Component {
     }
 		    
 	}
-	deleteArticle = async	(id) => {
-	const response = await fetch('http://localhost:9292/api/article/', + id, {
-		method: 'DELETE',
-		credentials: 'include'
-	})
-	console.log(response, 'this is the response from delete')
-	const parsedResponse = await response.json();
-	console.log(parsedResponse, 'this is delete parsed')
-		this.setState({
-			articles: parsedResponse.articles
+	deleteArticle = async	(article) => {
+		// console.log(e.currentTarget.id)
+			// e.preventDefault()
+		try {
+			await fetch('http://localhost:9292/api/user/article/' + article, {
+				method: 'DELETE',
+				credentials: 'include',
+				body: JSON.stringify({
+					article
+				}),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+		} catch (err) {
+			
+		}
+		console.log()
+		this.fetchArticles().then((articles) => {
+			this.setState({
+				articles: this.state.articles
+			})
 		})
-	this.fetchArticles()
 	}
 	componentDidMount(){
 		this.fetchUser();
 		this.fetchArticles();
 	}
     render(){
+    	console.log(this.deleteArticle)
     	const articles = this.state.articles.map((article, i) => {
     		return (
   				<div key={i}>
@@ -78,7 +90,7 @@ class MyArticles extends Component {
 									<h3> {article.description} </h3>
 									<h4> {article.content} </h4>
 									<a href={article.url}>Full article</a>
-									<Button id={article.source.id} data-index={i} color="yellow" onClick={this.deleteArticle}>Delete</Button>
+									<Button  color="yellow" onClick={this.deleteArticle}>Delete</Button>
 								</Segment>
 							</Grid.Column>
 	  				</Grid>	
