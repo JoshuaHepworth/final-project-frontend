@@ -40,11 +40,6 @@ class ArticleList extends Component {
 			showArticle: false
 		})
 	}
-	displayArticle = () => {
-		this.setState({
-			showArticle: true
-		})
-	}
 	async fetchArticles() {
 		const response = await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey='+ apiKey)
 		const parsed = await response.json();
@@ -114,6 +109,11 @@ class ArticleList extends Component {
 			showModal: false
 		})
 	}
+	displayArticle = () => {
+		this.setState({
+			showArticle: true
+		})
+	}
   render(){
   	console.log(this.state.articleForModal, 'this is article for modal')
   	const articleList = this.state.articles.map((article, i) => {
@@ -159,7 +159,7 @@ class ArticleList extends Component {
   	})
     return(
     	<div>
-    	<ArticleModal handleModal={this.handleModal} closeModal={this.closeModal}/>
+    	<ArticleModal articleForModal={this.state.articleForModal} handleModal={this.handleModal} closeModal={this.closeModal} open={this.state.showModal}/>
     		{ !this.state.showArticle ?
     		<div>
     		<Search getResults={this.getResults} />
@@ -172,7 +172,7 @@ class ArticleList extends Component {
 
 	     	  {articleList} 
      	  </div>
-     	: <ArticleView fix={this.fix} showArticle={this.state.showArticle} open={this.state.showModal} />}
+     	: <ArticleView fix={this.fix} showArticle={this.state.showArticle}  />}
      	<Link to='/article'></Link>
      	  
      	 </div>
