@@ -2,8 +2,75 @@ import React, { Component } from 'react';
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
 class CommentThread extends Component {
+	constructor(){
+	    super();
+	    this.state = {
+	        user: '',
+	        comment: ''
+	    }
+	}
+
+	handleChange = (e) => {
+		this.setState({
+			[e.currentTarget.name]: e.currentTarget.value
+		})
+	}
+	async saveComment(comment) { console.log("saveComment", comment)
+		// const userSearch = search
+		// const response = await fetch('https://newsapi.org/v2/everything?q=' + userSearch +'&apiKey='+ apiKey)
+		// const articleParsed = await response.json();
+		const saveComment = await fetch('http://localhost:9292/api/comment', {
+			credentials: 'include',
+			method: 'POST',
+			body: JSON.stringify(comment),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		const parsed = await saveComment.json();
+			if (parsed.status === 200) {
+			this.setState({
+				message: parsed.message,
+			})
+			console.log(parsed.comment, 'this is message parsed')
+		}
+		console.log(saveComment, 'this is save article')
+
+	
+	}
+	handleSubmit = (e) => {
+		const idx = e.currentTarget.dataset.index
+		const myArticle = this.state.comment
+		console.log(myArticle)
+		this.saveComment(myArticle)
+	}
+	fetchUser = async () => {
+    try {
+    	const currentUser = await fetch('http://localhost:9292/api/user', {
+    		credentials: 'include'
+    	})
+
+    	const parsedUser = await currentUser.json();
+    	console.log(parsedUser, "PARSED USER IN COMMENTS")
+
+    	this.setState({
+    		user: parsedUser.user.username
+    	})
+
+    } catch(err){
+        return(err)
+    }
+		    
+	}
+	fetchComment = async () => {
+		
+	}
+	componentDidMount(){
+		this.fetchUser()
+	}
     render(){
         return(
+	
             
 
 
@@ -71,8 +138,8 @@ class CommentThread extends Component {
       </Comment.Content>
     </Comment>
 
-    <Form reply>
-      <Form.TextArea />
+    <Form reply onSubmit={this.handleSubmit}>
+      <Form.TextArea onChange={this.handleChange}/>
       <Button content='Add Reply' labelPosition='left' icon='edit' primary />
     </Form>
   </Comment.Group>

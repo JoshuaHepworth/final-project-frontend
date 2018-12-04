@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import HeaderApp from '../HeaderApp'
-import { Segment, Header, Grid, Image, Button } from 'semantic-ui-react'
+
+import { Segment, Header, Grid, Image, Button, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import {Route, Switch} from 'react-router-dom'
-import MyComments from '../MyComments'
-import MyArticles from '../MyArticles'
-import SwitchController from '../SwitchController'
+
+
+
+
 import Search from '../Search'
-import SaveArticle from '../SaveArticle'
+
 import ArticleView from '../ArticleView'
 import ArticleModal from '../ArticleModal'
 import './styles.css'
@@ -164,9 +164,11 @@ class ArticleList extends Component {
     		<div>
     		<Search getResults={this.getResults} />
 
-	    		<div color="orange" class="ui success message">
-	    			<h1>{this.state.message}</h1>
-	        </div>
+	    		
+	    	<Card size="large"fluid color="red">
+            	{this.state.message}
+        </Card>
+	        
 	            		
 	     	  <h1> Top Headlines </h1>
 

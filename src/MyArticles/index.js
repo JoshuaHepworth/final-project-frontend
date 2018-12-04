@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Header, Grid, Image, Button } from 'semantic-ui-react'
+import { Segment, Header, Grid, Image, Button, Card } from 'semantic-ui-react'
 import './styles.css'
 class MyArticles extends Component {
 	constructor(){
@@ -120,12 +120,10 @@ class MyArticles extends Component {
     	})
         return(
         	<div>
-            <div class="ui success message">
-            	<i class="close icon"></i>
-            	<div class="header">
-            	<h1>{this.state.message}</h1>
-            	</div>
-            </div>
+        	<Card size="large"fluid color="red">
+            	{this.state.message}
+          </Card>
+          
             <h1> {this.state.user}'s articles </h1>
             {articles}
             		

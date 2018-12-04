@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Menu, Grid, Form, Button, Header } from 'semantic-ui-react'
+import { Menu, Form, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import './styles.css'
-import SwitchController from '../SwitchController'
-import {Route, Switch} from 'react-router-dom'
-import MyComments from '../MyComments'
-import MyArticles from '../MyArticles'
-import MainContainer from '../MainContainer'
+
+
+
+
+
 
 class HeaderApp extends Component {
 	
@@ -55,12 +55,12 @@ class HeaderApp extends Component {
             
             </div>
             
-            
-            
             </Menu>
-            
+            <br/>
             </div>
         )
     }
 }
 export default HeaderApp;
+            
+            

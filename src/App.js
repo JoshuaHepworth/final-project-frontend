@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MainContainer from './MainContainer'
 import LoginRegister from './LoginRegister'
-import {Route, Switch} from 'react-router-dom'
+import { Switch} from 'react-router-dom'
 import MyComments from './MyComments'
 import SwitchController from './SwitchController'
 

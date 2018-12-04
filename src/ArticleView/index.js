@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ArticleList from '../ArticleList'
-import {Button} from 'semantic-ui-react'
+
+
 class ArticleView extends Component {
 	constructor(){
 	    super();

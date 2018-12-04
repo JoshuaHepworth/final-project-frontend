@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Form, Button, Label, Header, Image, Grid, Segment } from 'semantic-ui-react';
+import { Modal, Header, Image, Grid, Segment } from 'semantic-ui-react';
 import './styles.css'
 import CommentThread from '../CommentThread'
 
@@ -9,6 +9,7 @@ class ArticleModal extends Component {
 	closeModal = () => {
 		this.props.closeModal()
 	}
+
     render(){
     	console.log(this.props.articleForModal, 'this is articleForModal')
         return(
@@ -19,7 +20,7 @@ class ArticleModal extends Component {
 		  					<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
 		      				<Grid.Column style={{maxWidth: 600}}>
 		  							<Segment>
-		  								<Image id={this.props.articleForModal} src={this.props.articleForModal.urlToImage}/>  /> 
+		  								<Image id={this.props.articleForModal} src={this.props.articleForModal.urlToImage}/>
 		  								<Header>{this.props.articleForModal.author} </Header>
 		  								<h1> {this.props.articleForModal.title} </h1>
 		  								<h3> {this.props.articleForModal.description} </h3>

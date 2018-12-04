@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import './styles.css'
 
 class Search extends Component {
