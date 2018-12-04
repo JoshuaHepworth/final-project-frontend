@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Grid, Form, Button } from 'semantic-ui-react'
+import { Menu, Grid, Form, Button, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import './styles.css'
 import SwitchController from '../SwitchController'
@@ -28,22 +28,34 @@ class HeaderApp extends Component {
 		}
     render(){
         return(
-        	<div>
+        	<div class="">
         	<Menu inverted >
+            <Menu.Item>
+              <Link to='/home'>Home</Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to='/mycomments'>My Comments</Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to='/myarticles'>My Articles</Link>
+            </Menu.Item>
+            <div class="">
+            <Menu.Item>
+            <h1>SCOPE</h1>
+            </Menu.Item>
+            </div>
+            <div class="right menu">
+            <Menu inverted>
         		<Menu.Item>
-        		<Form textAlign="right"onSubmit={this.handleLogout}>
-        			<Button className="visibile content"color="red"type="submit">Logout</Button>
+        		<Form onSubmit={this.handleLogout}>
+        			<Button className="logout"color="red"type="submit">Logout</Button>
       			</Form>
-      			</Menu.Item>
-      			<Menu.Item>
-            	<Link to='/home'>Home</Link>
             </Menu.Item>
-            <Menu.Item>
-            	<Link to='/mycomments'>My Comments</Link>
-            </Menu.Item>
-            <Menu.Item>
-            	<Link to='/myarticles'>My Articles</Link>
-            </Menu.Item>
+      			</Menu>
+            
+            </div>
+            
+            
             
             </Menu>
             

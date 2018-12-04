@@ -9,6 +9,7 @@ import SwitchController from '../SwitchController'
 import Search from '../Search'
 import SaveArticle from '../SaveArticle'
 import ArticleView from '../ArticleView'
+import ArticleModal from '../ArticleModal'
 import './styles.css'
 
 const apiKey = '46a2cf77ab8f462c903e3536c6e7502b'
@@ -25,10 +26,13 @@ class ArticleList extends Component {
         // author: '',
         // name: '',
         articles: [],
+        articleUrl: '',
         savedArticles: [],
         message: '',
         activity: '',
-        showArticle: false
+        showArticle: false,
+        showModal: false,
+        articleForModal: []
 	    }
 	}
 	fix = () => {
@@ -96,8 +100,22 @@ class ArticleList extends Component {
 		this.fetchArticlesSearched(userQuery).then((articles) => {
 		})
 	}
+	handleModal = (e) => {
+		const idx = e.currentTarget.dataset.index
+		const myArticle = this.state.articles[idx]
+		// console.log(myArticle)
+		this.setState({
+			showModal: true,
+			articleForModal: myArticle
+		})
+	}
+	closeModal = () => {
+		this.setState({
+			showModal: false
+		})
+	}
   render(){
-  	console.log(this.state)
+  	console.log(this.state.articleForModal, 'this is article for modal')
   	const articleList = this.state.articles.map((article, i) => {
   		const published = new Date(article.publishedAt)
   		const date = published.toLocaleDateString()
@@ -118,12 +136,14 @@ class ArticleList extends Component {
   								<Button class="ui button"id={article.source.id} data-index={i} color="yellow" onClick={this.handleSave}>Save</Button>
   								<div class="or"></div>
   								<a class="item">
-							    <i class="icon mail"></i> Activity
+							    <i class="icon mail"></i>
 							    <div class="floating ui red label">Activity</div>
 							 		</a>
 							  	</div>
-  									<Button onClick={this.displayArticle} color="blue" class="ui button">View</Button>
-  								
+							  		<Button id={article.source.id} data-index={i}onClick={this.handleModal}color="blue" class="ui button">
+  									View
+  									</Button>
+  									
   								
   								<h4> {date}</h4>
   								<small>Check out the full article</small>
@@ -139,7 +159,7 @@ class ArticleList extends Component {
   	})
     return(
     	<div>
-
+    	<ArticleModal handleModal={this.handleModal} closeModal={this.closeModal}/>
     		{ !this.state.showArticle ?
     		<div>
     		<Search getResults={this.getResults} />
@@ -152,8 +172,8 @@ class ArticleList extends Component {
 
 	     	  {articleList} 
      	  </div>
-     	: <ArticleView fix={this.fix} showArticle={this.state.showArticle} />}
-
+     	: <ArticleView fix={this.fix} showArticle={this.state.showArticle} open={this.state.showModal} />}
+     	<Link to='/article'></Link>
      	  
      	 </div>
 

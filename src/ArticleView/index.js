@@ -13,9 +13,7 @@ class ArticleView extends Component {
         return(
         	<div>
             <h1>ArticleView</h1>
-            <Button
-             onClick={this.props.fix}>Go Back
-            </Button>
+         
           </div>  
         )
     }

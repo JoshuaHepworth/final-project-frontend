@@ -9,6 +9,7 @@ import ArticleList from '../ArticleList'
 import SwitchController from '../SwitchController'
 import Search from '../Search'
 import SaveArticle from '../SaveArticle'
+import ArticleView from '../ArticleView'
 
 const apiKey = '46a2cf77ab8f462c903e3536c6e7502b'
 
@@ -20,6 +21,7 @@ const MainContainer = (props) => {
     		<HeaderApp Logout={props.Logout}/>
     		
 				<Switch>
+          <Route exact path="/article" component={ArticleView}/>
           <Route exact path="/mycomments" component={MyComments}/>
           <Route exact path="/myarticles" component={MyArticles}/>
           <Route exact path="/home" component={ArticleList}/>

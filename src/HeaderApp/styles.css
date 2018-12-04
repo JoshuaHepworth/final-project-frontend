@@ -1,3 +1,16 @@
 .menu {
 	background-color: green;
 }
+.scope {
+	align-content: center;
+	color: white;
+	max-height: 20px;
+	display: center;
+
+}
+div.item {
+	background-color: black;
+}
+.logout {
+	background-color: black;
+}
