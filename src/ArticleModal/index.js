@@ -19,7 +19,7 @@ class ArticleModal extends Component {
 
 
     render(){
-    	console.log(this.props.articleForModal, 'this is articleForModal')
+    	// console.log(this.props.articleForModal, 'this is articleForModal')
     	const published = new Date(this.props.articleForModal.publishedAt)
   		const date = published.toLocaleDateString()
         return(
@@ -38,7 +38,7 @@ class ArticleModal extends Component {
 		  								<small>{date}</small>
 		  								<br/>
 		  								<br/>
-		  								<lb/>
+		  								
 		  								<div class="scrolling content">
 		  								<CommentThread article={this.props.articleForModal} articleUrl={this.props.articleForModal.url} />
 		  								</div>

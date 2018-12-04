@@ -7,7 +7,7 @@ class CommentThread extends Component {
 	    this.state = {
 	        user: '',
 	        comment: '',
-	        articleComments: ''
+	        articleComments: []
 	        // article: {}
 	    }
 	}
@@ -74,22 +74,17 @@ class CommentThread extends Component {
     }
 		    
 	}
-	fetchArticleComments = async (id) => {
+	fetchArticleComments = async (id) => { 
 	  try {
-	  	const response = await fetch('http://localhost:9292/api/comment/article' + id, {
-	  		credentials: 'include',
-	  		body: JSON.stringify(id),
-				headers: {
-				'Content-Type': 'application/json'
-				}
+	  	const response = await fetch('http://localhost:9292/api/comment/article/' + id, {
+	  		credentials: 'include'
 	  	})
-	  	
+	  	// console.log(response, 'this is the response')
 	  	const parsedResponse = await response.json();
-	  	console.log(parsedResponse, 'this is parsed response from comment fetch')
-	  	
+			console.log(parsedResponse, ' THIS IS PARSED FROM ARTICLE COMMENTS')
 
 	  	this.setState({
-	  		articleComments: parsedResponse.articles
+	  		articleComments: parsedResponse.comments
 	  	})
 
 	  } catch(err){
@@ -102,7 +97,16 @@ class CommentThread extends Component {
 		this.fetchArticleComments();
 	}
   render(){
-  	console.log(this.state.comment, 'this is the state in comments thread')
+  	const comments = this.state.articleComments.map((comment, i) => {
+  		return(
+  			<div key={i}>
+  			<h1>{comment.message}</h1>
+  			</div>
+  			)
+  	})
+  	console.log(this.state.user)
+  	console.log(this.state.articleComments)
+
     return(
 
 		  <Comment.Group>
@@ -113,7 +117,7 @@ class CommentThread extends Component {
 		    <Comment>
 		      
 		      <Comment.Content>
-		        <Comment.Author as='a'>Matt</Comment.Author>
+		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
 		        <Comment.Metadata>
 		          <div>Today at 5:42PM</div>
 		        </Comment.Metadata>
@@ -127,7 +131,7 @@ class CommentThread extends Component {
 		    <Comment>
 		      
 		      <Comment.Content>
-		        <Comment.Author as='a'>Elliot Fu</Comment.Author>
+		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
 		        <Comment.Metadata>
 		          <div>Yesterday at 12:30AM</div>
 		        </Comment.Metadata>
@@ -142,7 +146,7 @@ class CommentThread extends Component {
 		        <Comment>
 		          
 		          <Comment.Content>
-		            <Comment.Author as='a'>Jenny Hess</Comment.Author>
+		            <Comment.Author as='a'>{this.state.user}</Comment.Author>
 		            <Comment.Metadata>
 		              <div>Just now</div>
 		            </Comment.Metadata>
@@ -158,11 +162,11 @@ class CommentThread extends Component {
 		    <Comment>
 		      
 		      <Comment.Content>
-		        <Comment.Author as='a'>Joe Henderson</Comment.Author>
+		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
 		        <Comment.Metadata>
 		          <div>5 days ago</div>
 		        </Comment.Metadata>
-		        <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
+		        <Comment.Text>{comments}</Comment.Text>
 		        <Comment.Actions>
 		          
 		        </Comment.Actions>

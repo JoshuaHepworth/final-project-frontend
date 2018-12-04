@@ -115,7 +115,7 @@ class ArticleList extends Component {
 		})
 	}
   render(){
-  	console.log(this.state.articleForModal, 'this is article for modal')
+  	// console.log(this.state.articleForModal, 'this is article for modal')
   	const articleList = this.state.articles.map((article, i) => {
   		const published = new Date(article.publishedAt)
   		const date = published.toLocaleDateString()
