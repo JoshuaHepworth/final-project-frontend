@@ -6,14 +6,24 @@ import CommentThread from '../CommentThread'
 
 class ArticleModal extends Component {
 
+	// add state and give this the ability to load its own comment thread
+
+
+
+
 	closeModal = () => {
 		this.props.closeModal()
 	}
 
+
+
+
     render(){
     	console.log(this.props.articleForModal, 'this is articleForModal')
+    	const published = new Date(this.props.articleForModal.publishedAt)
+  		const date = published.toLocaleDateString()
         return(
- 
+ 	
             <Modal open={this.props.open}>
             	<Modal.Content>
             	<p className="close" onClick={this.closeModal}>+</p>
@@ -25,8 +35,12 @@ class ArticleModal extends Component {
 		  								<h1> {this.props.articleForModal.title} </h1>
 		  								<h3> {this.props.articleForModal.description} </h3>
 		  								<h4> {this.props.articleForModal.content} </h4>
+		  								<small>{date}</small>
+		  								<br/>
+		  								<br/>
+		  								<lb/>
 		  								<div class="scrolling content">
-		  								<CommentThread />
+		  								<CommentThread article={this.props.articleForModal} articleUrl={this.props.articleForModal.url} />
 		  								</div>
 		  							</Segment>
 		  						</Grid.Column>
