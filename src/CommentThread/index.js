@@ -79,16 +79,23 @@ class CommentThread extends Component {
     }
 		    
 	}
-	fetchArticleComments = async (id) => { 
+	fetchArticleComments = async (articleUrl) => { 
 	  try {
-	  	const response = await fetch('http://localhost:9292/api/comment/article/' + id, {
-	  		credentials: 'include'
+	  	const response = await fetch('http://localhost:9292/api/comment/article', {
+	  		method: 'POST',
+	  		credentials: 'include',
+	  		body: JSON.stringify({
+	  			url: articleUrl
+	  		}),
+	  		headers: {
+	  			"Content-Type": 'application/json'
+	  		}
 	  	})
 	  	// console.log(response, 'this is the response')
 	  	const parsedResponse = await response.json();
 			console.log(parsedResponse, ' THIS IS PARSED FROM ARTICLE COMMENTS')
 
-	  		console.log(parsedResponse.comments, ' THESE. ARE THE COMMENTS PARSED IN GET')
+	  	console.log(parsedResponse.comments, ' THESE. ARE THE COMMENTS PARSED IN GET')
 	  	this.setState({
 	  		articleComments: parsedResponse.comments
 	  	})
@@ -100,7 +107,7 @@ class CommentThread extends Component {
 	}
 	componentDidMount(){
 		this.fetchUser();
-		this.fetchArticleComments();
+		this.fetchArticleComments(this.props.articleUrl);
 	}
   render(){
   	const comments = this.state.articleComments.map((comment, i) => {
@@ -123,7 +130,7 @@ class CommentThread extends Component {
 		    </Comment>
   			<h1></h1>
   			</div>
-  			)
+  		)
   	})
   	console.log(this.state.user)
   	console.log(this.state.articleComments)
@@ -131,9 +138,6 @@ class CommentThread extends Component {
     return(
 
 		  <Comment.Group>
-		    <Header as='h3' dividing color="blue">
-		      Comments Thread
-		    </Header>
 		    {comments}
 		    <Form reply onSubmit={this.handleSubmit} id={this.props.articleUrl}>
 		      <Form.TextArea value={this.state.comment} onSubmit={this.handleSubmit} id={this.props.articleUrl} name="comment" placeholder="Comment..." onChange={this.handleChange}/>

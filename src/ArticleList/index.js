@@ -40,6 +40,7 @@ class ArticleList extends Component {
 			showArticle: false
 		})
 	}
+	
 	async fetchArticles() {
 		const response = await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey='+ apiKey)
 		const parsed = await response.json();
@@ -170,7 +171,7 @@ class ArticleList extends Component {
         </Card>
 	        
 	            		
-	     	  <h1> Top Headlines </h1>
+	     	  <Header> Top Headlines </Header>
 
 	     	  {articleList} 
      	  </div>

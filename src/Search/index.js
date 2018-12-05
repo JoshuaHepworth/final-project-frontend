@@ -22,7 +22,7 @@ class Search extends Component {
         return(
         	<div>
           	<form onSubmit={this.handleSubmit}>
-						<input onChange={this.handleChange} type="text" value={this.state.search} name='search' placeholder=" Search News..."/>
+						<input onChange={this.handleChange} type="text" value={this.state.search} name='search' placeholder=" Search News..." fluid icon="search"/>
           		<Button color="green"type="submit">Search</Button>
       			</form>
       		</div>

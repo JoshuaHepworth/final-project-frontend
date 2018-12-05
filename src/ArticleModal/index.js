@@ -38,7 +38,9 @@ class ArticleModal extends Component {
 		  								<small>{date}</small>
 		  								<br/>
 		  								<br/>
-		  								
+		  								<Header as='h3' dividing color="blue">
+		     							 Comments Thread
+		    							</Header>
 		  								<div class="scrolling content">
 		  								<CommentThread article={this.props.articleForModal} articleUrl={this.props.articleForModal.url} />
 		  								</div>
