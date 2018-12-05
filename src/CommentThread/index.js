@@ -40,12 +40,13 @@ class CommentThread extends Component {
 
 		const parsed = await saveComment.json();
 		const newCommentArray = this.state.articleComments;
+		// console.log(this.state.commentAuthor, " THIS IS THE AUTHOR OF THE COMMENT")
 		newCommentArray.push(parsed.comment);
 		console.log(parsed, 'this is parsed saveComment')
 		if (parsed.status === 200) {
 			this.setState({
 				articleComments: newCommentArray,
-				// article: this.props.article,
+				// commentAuthor: parsed.user.username,
 				message: parsed.message
 			})
 			console.log(parsed.comment, 'this is message parsed')
@@ -70,8 +71,9 @@ class CommentThread extends Component {
     	console.log(parsedUser, "PARSED USER IN COMMENTS")
 
     	this.setState({
-    		user: parsedUser.user.username,
-    		commentAuthor: parsedUser.user.comments
+    		user: parsedUser.user.username
+    		// commentAuthor: parsedUser.comments.message
+    		// commentAuthor: parsedUser.user.comments
     	})
 
     } catch(err){
@@ -110,19 +112,21 @@ class CommentThread extends Component {
 		this.fetchArticleComments(this.props.articleUrl);
 	}
   render(){
+  	console.log(this.state.commentAuthor, ' THIS IS THE AUTHOR')
   	const comments = this.state.articleComments.map((comment, i) => {
-  		const published = new Date(comment.ts)
+  		console.log(comment, "THIS IS COMMENTS IN RENDER")
+  		const published = new Date(comment.comment.ts)
   		const date = published.toLocaleDateString()
   		// console.log(this.state.commentAuthor, 'this is the author!')
   		return(
   			<div key={i}>
   				<Comment>
 		      <Comment.Content>
-		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
+		        <Comment.Author as='a'>{comment.username}</Comment.Author>
 		        <Comment.Metadata>
 		          <div>{date}</div>
 		        </Comment.Metadata>
-		        <Comment.Text>{comment.message}</Comment.Text>
+		        <Comment.Text>{comment.comment.message}</Comment.Text>
 		        <Comment.Actions>
 		          
 		        </Comment.Actions>

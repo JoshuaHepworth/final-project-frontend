@@ -9,7 +9,32 @@ import './styles.css'
 
 
 class HeaderApp extends Component {
-	
+  constructor(){
+      super();
+      this.state = {
+          user: ''
+      }
+  }
+  fetchUser = async () => {
+    try {
+      const currentUser = await fetch('http://localhost:9292/api/user', {
+        credentials: 'include'
+      })
+
+      const parsedUser = await currentUser.json();
+      console.log(parsedUser, "PARSED USER IN COMMENTS")
+
+      this.setState({
+        user: parsedUser.user.username
+        // commentAuthor: parsedUser.comments.message
+        // commentAuthor: parsedUser.user.comments
+      })
+
+    } catch(err){
+        return(err)
+    }
+        
+  }
 	handleLogout = async (e) => {
   	e.preventDefault()
 
@@ -26,7 +51,11 @@ class HeaderApp extends Component {
     	this.props.Logout(parsedResponse)
   		}
 		}
+    componentDidMount(){
+      this.fetchUser()
+    }
     render(){
+      console.log(this.state.user)
         return(
         	<div class="">
         	<Menu inverted >
@@ -39,10 +68,15 @@ class HeaderApp extends Component {
             <Menu.Item>
               <Link to='/myarticles'>My Articles</Link>
             </Menu.Item>
+            <div class="middle menu">
+            <Menu.Item>
+            <h1 class="header">NEWS APP</h1>
+            </Menu.Item>
+            </div>
             <div class="right menu">
             <Menu inverted>
             <Menu.Item>
-            <h1>NEWS APP</h1>
+              <h2>{this.state.user}</h2>
             </Menu.Item>
             </Menu>
             </div>

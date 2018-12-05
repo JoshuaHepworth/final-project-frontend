@@ -44,7 +44,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      { this.state.loggedIn ? <MainContainer Logout={this.Logout}/> : <LoginRegister LogIn={this.LogIn}/> }
+      { this.state.loggedIn ? <MainContainer user={this.state.username} Logout={this.Logout}/> : <LoginRegister LogIn={this.LogIn}/> }
 
       </div>
     );

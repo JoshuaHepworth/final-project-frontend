@@ -14,7 +14,7 @@ const MainContainer = (props) => {
     return(
     	<div>
 
-    		<HeaderApp Logout={props.Logout}/>
+    		<HeaderApp user={props.user} Logout={props.Logout}/>
     		
 				<Switch>
           <Route exact path="/article" component={ArticleView}/>

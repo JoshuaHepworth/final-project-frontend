@@ -14,3 +14,6 @@ div.item {
 .logout {
 	background-color: black;
 }
+.header {
+	display: center;
+}
