@@ -45,4 +45,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 #WireFrame
 
-![alt text](https://imgur.com/djgGNln)
+![alt text](https://i.imgur.com/djgGNln.png)
