@@ -1,5 +1,6 @@
 .menu {
-	background-color: green;
+	background-color: black;
+	color: white;
 }
 .scope {
 	align-content: center;
@@ -12,8 +13,43 @@ div.item {
 	background-color: black;
 }
 .logout {
-	background-color: black;
+	padding-top: 20px;
+
+	// background-color: black;
+}
+.button.ui.red.button.logout {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 20px;
 }
 .header {
-	display: center;
+	align: center;
+	color: white;
+	font-size: 30px;
+	padding-top: 20px;
+}
+div.menu {
+	color: white;
+}
+.home {
+	padding-top: 20px;
+}
+.comment {
+	padding-top: 20px;
+	
+}
+.article {
+	padding-top: 20px;
+}
+.user {
+	padding-top: 20px;
+}
+a {
+	color: white;
+}
+a:hover {
+	color:hotpink;
+}
+a:active {
+	color: red;
 }

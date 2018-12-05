@@ -57,40 +57,40 @@ class HeaderApp extends Component {
     render(){
       console.log(this.state.user)
         return(
-        	<div class="">
-        	<Menu inverted >
+        	<div class="menu">
+          <Menu secondary inverted>
+            
             <Menu.Item>
-              <Link to='/home'>Home</Link>
+              <h2 class="home"><Link to='/home'>Home</Link></h2>
             </Menu.Item>
             <Menu.Item>
-              <Link to='/mycomments'>My Comments</Link>
+              <h2 class="comment"><Link to='/mycomments'>My Comments</Link></h2>
             </Menu.Item>
             <Menu.Item>
-              <Link to='/myarticles'>My Articles</Link>
+              <h2 class="article"><Link to='/myarticles'>My Articles</Link></h2>
             </Menu.Item>
-            <div class="middle menu">
+            
+            
+            
+            
+            
+            <Menu.Menu position="right">
             <Menu.Item>
-            <h1 class="header">NEWS APP</h1>
+              <h2 class ="user">{this.state.user}</h2>
             </Menu.Item>
-            </div>
-            <div class="right menu">
-            <Menu inverted>
-            <Menu.Item>
-              <h2>{this.state.user}</h2>
-            </Menu.Item>
-            </Menu>
-            </div>
-            <div class="left menu">
-            <Menu inverted>
+            
+            
+            
+            
         		<Menu.Item>
         		<Form onSubmit={this.handleLogout}>
         			<Button className="logout"color="red"type="submit">Logout</Button>
       			</Form>
             </Menu.Item>
-      			</Menu>
+      			
             
-            </div>
             
+            </Menu.Menu>
             </Menu>
             <br/>
             </div>

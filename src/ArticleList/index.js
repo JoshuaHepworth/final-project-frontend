@@ -124,7 +124,7 @@ class ArticleList extends Component {
   				<div key={i}>
   					<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
       				<Grid.Column style={{maxWidth: 900}}>
-  							<Segment>
+  							<Segment raised color="black">
   		
  
   								<Image id={article.source.id} src={article.urlToImage} />
@@ -138,7 +138,7 @@ class ArticleList extends Component {
   								<div class="or"></div>
   								<a class="item">
 							    <i class="icon mail"></i>
-							    <div class="floating ui red label">Activity</div>
+							    <div class="floating ui red label">Comments</div>
 							 		</a>
 							  	</div>
 							  		<Button id={article.source.id} data-index={i}onClick={this.handleModal}color="blue" class="ui button">
@@ -161,21 +161,20 @@ class ArticleList extends Component {
     return(
     	<div>
     	<ArticleModal articleForModal={this.state.articleForModal} handleModal={this.handleModal} closeModal={this.closeModal} open={this.state.showModal}/>
-    		{ !this.state.showArticle ?
-    		<div>
+    		<div class="block">
+    		<br/>
     		<Search getResults={this.getResults} />
 
 	    		
-	    	<Card size="large"fluid color="red">
-            	{this.state.message}
-        </Card>
-	        
-	            		
-	     	  <h1> Top Headlines </h1>
+	    	
+	     	  <h1 class="top"> Top Headlines </h1>
+            	<h3>{this.state.message}</h3>
 
-	     	  {articleList} 
+     	  <br/>
      	  </div>
-     	: <ArticleView fix={this.fix} showArticle={this.state.showArticle}  />}
+	     	  
+	     	  {articleList} 
+     	 <ArticleView fix={this.fix} showArticle={this.state.showArticle}  />
      	<Link to='/article'></Link>
      	  
      	 </div>
@@ -184,3 +183,6 @@ class ArticleList extends Component {
   }
 }
 export default ArticleList;
+        
+	        
+	            		

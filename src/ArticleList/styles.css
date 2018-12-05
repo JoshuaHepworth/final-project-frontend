@@ -7,3 +7,13 @@
 .view {
 	color: white;
 }
+body {
+	background-color: #016FB9;
+}
+.top {
+	font-family: 'Inconsolata', monospace;
+	font-size: 40px;
+}
+.block {
+	background-color: white
+}

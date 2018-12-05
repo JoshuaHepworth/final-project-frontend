@@ -94,7 +94,7 @@ class MyArticles extends Component {
   				<div key={i}>
 						<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
 	    				<Grid.Column style={{maxWidth: 600}}>
-								<Segment>
+								<Segment raised color="black">
 									<Image id={article.source} src={article.img_url} />
 									<h2> {article.source.name} </h2>
 									<Header>{article.author} </Header>
