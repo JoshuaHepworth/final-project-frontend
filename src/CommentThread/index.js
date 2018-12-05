@@ -101,21 +101,23 @@ class CommentThread extends Component {
 	}
   render(){
   	const comments = this.state.articleComments.map((comment, i) => {
+  		const published = new Date(comment.ts)
+  		const date = published.toLocaleDateString()
   		return(
   			<div key={i}>
   				<Comment>
 		      <Comment.Content>
 		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
 		        <Comment.Metadata>
-		          <div>5 days ago</div>
+		          <div>{date}</div>
 		        </Comment.Metadata>
-		        <Comment.Text>{comments}</Comment.Text>
+		        <Comment.Text>{comment.message}</Comment.Text>
 		        <Comment.Actions>
 		          
 		        </Comment.Actions>
 		      </Comment.Content>
 		    </Comment>
-  			<h1>{comment.message}</h1>
+  			<h1></h1>
   			</div>
   			)
   	})
