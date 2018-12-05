@@ -1,3 +1,42 @@
+
+## NEWS APP
+
+### `User stories`
+
+-Users should be able to login and register
+
+-Users should be able to search keywords for related news
+
+-Users should be able to click an article from the main page and be redirected to Article page
+
+-Users should be able to see how active articles are on the home-page with numbered icons
+
+-Users should be able to see a notification icon next to the “my comments” header to indicate active threads.
+
+-Users should be able to comment on articles
+
+-Users should be able to like and dislike other users comments
+
+-Users should be able to see a time the comment was created
+
+-Users should be able to edit and delete their own comments
+
+-Users should be able to refine searches by specific news sources
+
+-Users should be able to view top-headlines, popular, and latest from specific news 
+sources
+
+-Users should be able to save news articles into their profile
+
+-Users should be able to access their comments and articles from a navbar
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -43,6 +82,6 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-#WireFrame
+### `Wireframes`
 
 ![alt text](https://i.imgur.com/djgGNln.png)
