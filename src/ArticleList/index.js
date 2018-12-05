@@ -122,12 +122,12 @@ class ArticleList extends Component {
   		return (
   				<div key={i}>
   					<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
-      				<Grid.Column style={{maxWidth: 600}}>
+      				<Grid.Column style={{maxWidth: 900}}>
   							<Segment>
   		
  
   								<Image id={article.source.id} src={article.urlToImage} />
-  								<h2> {article.source.name} </h2>
+  								<h2> By {article.source.name} </h2>
   								<Header>{article.author} </Header>
   								<h1> {article.title} </h1>
   								<h3> {article.description} </h3>
