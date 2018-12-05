@@ -145,7 +145,7 @@ class ArticleList extends Component {
   									</Button>
   									
   								
-  								<h4> {date}</h4>
+  								<h4> Published: {date}</h4>
   								<small>Check out the full article</small>
   								<a className="link" href={article.url}> Here</a>
   							</Segment>

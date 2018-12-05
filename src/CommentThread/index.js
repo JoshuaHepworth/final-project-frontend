@@ -36,11 +36,14 @@ class CommentThread extends Component {
 				'Content-Type': 'application/json'
 			}
 		})
+
 		const parsed = await saveComment.json();
+		const newCommentArray = this.state.articleComments;
+		newCommentArray.push(parsed.comment);
 		console.log(parsed, 'this is parsed saveComment')
 		if (parsed.status === 200) {
 			this.setState({
-				comment: this.state.comment,
+				articleComments: newCommentArray,
 				// article: this.props.article,
 				message: parsed.message
 			})
@@ -100,6 +103,18 @@ class CommentThread extends Component {
   	const comments = this.state.articleComments.map((comment, i) => {
   		return(
   			<div key={i}>
+  				<Comment>
+		      <Comment.Content>
+		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
+		        <Comment.Metadata>
+		          <div>5 days ago</div>
+		        </Comment.Metadata>
+		        <Comment.Text>{comments}</Comment.Text>
+		        <Comment.Actions>
+		          
+		        </Comment.Actions>
+		      </Comment.Content>
+		    </Comment>
   			<h1>{comment.message}</h1>
   			</div>
   			)
@@ -113,66 +128,7 @@ class CommentThread extends Component {
 		    <Header as='h3' dividing color="blue">
 		      Comments Thread
 		    </Header>
-
-		    <Comment>
-		      
-		      <Comment.Content>
-		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
-		        <Comment.Metadata>
-		          <div>Today at 5:42PM</div>
-		        </Comment.Metadata>
-		        <Comment.Text>How artistic!</Comment.Text>
-		        <Comment.Actions>
-		          
-		        </Comment.Actions>
-		      </Comment.Content>
-		    </Comment>
-
-		    <Comment>
-		      
-		      <Comment.Content>
-		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
-		        <Comment.Metadata>
-		          <div>Yesterday at 12:30AM</div>
-		        </Comment.Metadata>
-		        <Comment.Text>
-		          <p>This has been very useful for my research. Thanks as well!</p>
-		        </Comment.Text>
-		        <Comment.Actions>
-		          
-		        </Comment.Actions>
-		      </Comment.Content>
-		      <Comment.Group>
-		        <Comment>
-		          
-		          <Comment.Content>
-		            <Comment.Author as='a'>{this.state.user}</Comment.Author>
-		            <Comment.Metadata>
-		              <div>Just now</div>
-		            </Comment.Metadata>
-		            <Comment.Text>Elliot you are always so right :)</Comment.Text>
-		            <Comment.Actions>
-		              
-		            </Comment.Actions>
-		          </Comment.Content>
-		        </Comment>
-		      </Comment.Group>
-		    </Comment>
-
-		    <Comment>
-		      
-		      <Comment.Content>
-		        <Comment.Author as='a'>{this.state.user}</Comment.Author>
-		        <Comment.Metadata>
-		          <div>5 days ago</div>
-		        </Comment.Metadata>
-		        <Comment.Text>{comments}</Comment.Text>
-		        <Comment.Actions>
-		          
-		        </Comment.Actions>
-		      </Comment.Content>
-		    </Comment>
-
+		    {comments}
 		    <Form reply onSubmit={this.handleSubmit} id={this.props.articleUrl}>
 		      <Form.TextArea value={this.state.comment} onSubmit={this.handleSubmit} id={this.props.articleUrl} name="comment" placeholder="Comment..." onChange={this.handleChange}/>
 		      <Button content='Add Reply' labelPosition='left' icon='edit' primary />
