@@ -39,12 +39,14 @@ class HeaderApp extends Component {
             <Menu.Item>
               <Link to='/myarticles'>My Articles</Link>
             </Menu.Item>
-            <div class="">
-            <Menu.Item>
-            <h1>SCOPE</h1>
-            </Menu.Item>
-            </div>
             <div class="right menu">
+            <Menu inverted>
+            <Menu.Item>
+            <h1>NEWS APP</h1>
+            </Menu.Item>
+            </Menu>
+            </div>
+            <div class="left menu">
             <Menu inverted>
         		<Menu.Item>
         		<Form onSubmit={this.handleLogout}>

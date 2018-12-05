@@ -7,7 +7,8 @@ class CommentThread extends Component {
 	    this.state = {
 	        user: '',
 	        comment: '',
-	        articleComments: []
+	        articleComments: [],
+	        commentAuthor: ''
 	        // article: {}
 	    }
 	}
@@ -69,7 +70,8 @@ class CommentThread extends Component {
     	console.log(parsedUser, "PARSED USER IN COMMENTS")
 
     	this.setState({
-    		user: parsedUser.user.username
+    		user: parsedUser.user.username,
+    		commentAuthor: parsedUser.user.comments
     	})
 
     } catch(err){
@@ -86,6 +88,7 @@ class CommentThread extends Component {
 	  	const parsedResponse = await response.json();
 			console.log(parsedResponse, ' THIS IS PARSED FROM ARTICLE COMMENTS')
 
+	  		console.log(parsedResponse.comments, ' THESE. ARE THE COMMENTS PARSED IN GET')
 	  	this.setState({
 	  		articleComments: parsedResponse.comments
 	  	})
@@ -103,6 +106,7 @@ class CommentThread extends Component {
   	const comments = this.state.articleComments.map((comment, i) => {
   		const published = new Date(comment.ts)
   		const date = published.toLocaleDateString()
+  		// console.log(this.state.commentAuthor, 'this is the author!')
   		return(
   			<div key={i}>
   				<Comment>

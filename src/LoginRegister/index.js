@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css'
-import { Form, Button, Grid, Segment } from 'semantic-ui-react';
+import { Form, Button, Grid, Segment, Menu, Card } from 'semantic-ui-react';
 
 class LoginRegister extends Component {
 	constructor(){
@@ -54,12 +54,17 @@ class LoginRegister extends Component {
     render(){
         return(
         	<div>
+        	<Menu inverted>
+        	<Menu.Item>
+        	<h1>Welcome!</h1>
+        	</Menu.Item>
+        	</Menu>
         		<Grid container columns={1} textAlign='center' vertical='middle' style={{height: '100%'}}>
         		<Grid.Column style={{maxWidth: 450}}>
         		<Segment>
-        			<div class="ui warning message">
-        			<h1 className="invalid">{this.state.message}</h1>
-        			</div>
+        		<Card size="large"fluid color="red">
+            	<h1 class="invalid">{this.state.message}</h1>
+          	</Card>
             	<h1> {this.state.which === "login" ? "Log in here" : "Register here"} </h1>
             		<Form onSubmit={this.handleSubmit}>
 		            	<input
