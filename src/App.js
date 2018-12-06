@@ -7,6 +7,7 @@ import MyComments from './MyComments'
 import SwitchController from './SwitchController'
 
 import apiUrl from './apiUrl'
+
 console.log(apiUrl)
 class App extends Component {
   constructor(){
@@ -31,7 +32,7 @@ class App extends Component {
     })
   }
   componentDidMount(){
-    fetch('http://localhost:9292/api/user', {
+    fetch(apiUrl + '/api/user', {
       credentials: 'include'
     }).then((response) => {
       return response.json()  
