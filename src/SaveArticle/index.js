@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react'
 
 const apiKey = 'c2060d4c459b4dc3ab9fe16b4b16c82c'
 
-import apiUrl from './apiUrl'
+import apiUrl from '../apiUrl'
 
 class SaveArticle extends Component {
 	constructor(){

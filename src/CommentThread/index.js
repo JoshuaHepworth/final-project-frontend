@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
-import apiUrl from './apiUrl'
+
+import apiUrl from '../apiUrl'
+
 class CommentThread extends Component {
 	constructor(){
 	    super();

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Menu, Form, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import './styles.css'
-import apiUrl from './apiUrl'
+import apiUrl from '../apiUrl'
 
 
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles.css'
 import { Form, Button, Grid, Segment, Menu, Card } from 'semantic-ui-react';
 
-import apiUrl from './apiUrl'
+import apiUrl from '../apiUrl'
 
 class LoginRegister extends Component {
 	constructor(){

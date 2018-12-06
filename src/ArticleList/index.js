@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Segment, Header, Grid, Image, Button, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import apiUrl from './apiUrl'
+import apiUrl from '../apiUrl'
 
 
 
