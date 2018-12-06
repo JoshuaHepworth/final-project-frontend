@@ -1,4 +1,4 @@
-
+## link to deployed version https://ancient-beyond-32349.herokuapp.com/
 ## NEWS APP
 
 ### `User stories`
