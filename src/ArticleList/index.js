@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Segment, Header, Grid, Image, Button, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-
+import apiUrl from './apiUrl'
 
 
 
@@ -63,7 +63,7 @@ class ArticleList extends Component {
 		// const userSearch = search
 		// const response = await fetch('https://newsapi.org/v2/everything?q=' + userSearch +'&apiKey='+ apiKey)
 		// const articleParsed = await response.json();
-		const saveArticle = await fetch('http://localhost:9292/api/article', {
+		const saveArticle = await fetch(apiUrl + '/api/article', {
 			credentials: 'include',
 			method: 'POST',
 			body: JSON.stringify(article),

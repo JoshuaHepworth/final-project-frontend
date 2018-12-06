@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Segment, Header, Grid, Image, Button, Card } from 'semantic-ui-react'
 import './styles.css'
+
+import apiUrl from './apiUrl'
+
 class MyArticles extends Component {
 	constructor(){
 	    super();
@@ -12,7 +15,7 @@ class MyArticles extends Component {
 	}
 	fetchArticles = async () => {
     try {
-    	const response = await fetch('http://localhost:9292/api/user/articles', {
+    	const response = await fetch(apiUrl + '/api/user/articles', {
     		credentials: 'include'
     	})
     	
@@ -31,7 +34,7 @@ class MyArticles extends Component {
 	}
 	fetchUser = async () => {
     try {
-    	const currentUser = await fetch('http://localhost:9292/api/user', {
+    	const currentUser = await fetch(apiUrl + '/api/user', {
     		credentials: 'include'
     	})
 
@@ -51,7 +54,7 @@ class MyArticles extends Component {
 		// const userSearch = search
 		// const response = await fetch('https://newsapi.org/v2/everything?q=' + userSearch +'&apiKey='+ apiKey)
 		// const articleParsed = await response.json();
-		const deleteArticle = await fetch('http://localhost:9292/api/user/article/' + id , {
+		const deleteArticle = await fetch(apiUrl + '/api/user/article/' + id , {
 			credentials: 'include',
 			method: 'DELETE',
 			body: JSON.stringify(id),

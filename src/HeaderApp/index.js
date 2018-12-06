@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Menu, Form, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import './styles.css'
-
+import apiUrl from './apiUrl'
 
 
 
@@ -17,7 +17,7 @@ class HeaderApp extends Component {
   }
   fetchUser = async () => {
     try {
-      const currentUser = await fetch('http://localhost:9292/api/user', {
+      const currentUser = await fetch(apiUrl + '/api/user', {
         credentials: 'include'
       })
 
@@ -38,7 +38,7 @@ class HeaderApp extends Component {
 	handleLogout = async (e) => {
   	e.preventDefault()
 
-  	const logoutResponse = await fetch('http://localhost:9292/api/user/logout', {
+  	const logoutResponse = await fetch(apiUrl + '/api/user/logout', {
      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'

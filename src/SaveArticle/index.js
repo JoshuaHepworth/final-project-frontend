@@ -3,6 +3,8 @@ import { Button } from 'semantic-ui-react'
 
 const apiKey = 'c2060d4c459b4dc3ab9fe16b4b16c82c'
 
+import apiUrl from './apiUrl'
+
 class SaveArticle extends Component {
 	constructor(){
     super();
@@ -22,7 +24,7 @@ class SaveArticle extends Component {
 		const userSearch = search
 		const response = await fetch('https://newsapi.org/v2/everything?q=' + userSearch +'&apiKey='+ apiKey)
 		const articleParsed = await response.json();
-		const saveArticle = await fetch('http://localhost:9292/api/article', {
+		const saveArticle = await fetch(apiUrl + '/api/article', {
 			credentials: 'include',
 			method: 'POST',
 			body: JSON.stringify({

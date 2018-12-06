@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
-
+import apiUrl from './apiUrl'
 class CommentThread extends Component {
 	constructor(){
 	    super();
@@ -26,7 +26,7 @@ class CommentThread extends Component {
 				comment: comment,
 				article: article
 			})
-		const saveComment = await fetch('http://localhost:9292/api/comment', {
+		const saveComment = await fetch(apiUrl + '/api/comment', {
 			credentials: 'include',
 			method: 'POST',
 			body: JSON.stringify({
@@ -65,7 +65,7 @@ class CommentThread extends Component {
 	}
 	fetchUser = async () => {
     try {
-    	const currentUser = await fetch('http://localhost:9292/api/user', {
+    	const currentUser = await fetch(apiUrl + '/api/user', {
     		credentials: 'include'
     	})
 
@@ -85,7 +85,7 @@ class CommentThread extends Component {
 	}
 	fetchArticleComments = async (articleUrl) => { 
 	  try {
-	  	const response = await fetch('http://localhost:9292/api/comment/article', {
+	  	const response = await fetch(apiUrl + '/api/comment/article', {
 	  		method: 'POST',
 	  		credentials: 'include',
 	  		body: JSON.stringify({

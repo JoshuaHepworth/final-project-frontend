@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './styles.css'
 import { Form, Button, Grid, Segment, Menu, Card } from 'semantic-ui-react';
 
+import apiUrl from './apiUrl'
+
 class LoginRegister extends Component {
 	constructor(){
 	    super();
@@ -20,7 +22,7 @@ class LoginRegister extends Component {
 	}
 	handleSubmit = async (e) => {
 		e.preventDefault();
-		const response = await fetch('http://localhost:9292/api/user/' + this.state.which, {
+		const response = await fetch(apiUrl + '/api/user/' + this.state.which, {
 			method: 'POST',
 			credentials: 'include',
 			body: JSON.stringify({
