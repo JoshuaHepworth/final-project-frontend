@@ -45,15 +45,17 @@ class CommentThread extends Component {
 		const newCommentArray = this.state.articleComments;
 		// the TIME STAMP IS NULL IN THE PARSED.COMMENTS
 		console.log(parsed.comment, " THIS IS THE NEW COMMENT ARRAY")
+
 		newCommentArray.push(parsed.comment);
 		console.log(parsed, 'this is parsed saveComment')
 		if (parsed.status === 200) {
-			this.setState({
-				articleComments: newCommentArray,
-				// commentAuthor: parsed.user.username,
-				message: parsed.message
-			})
-			console.log(parsed.comment, 'this is message parsed')
+			this.fetchArticleComments(this.props.articleUrl)
+			// this.setState({
+			// 	articleComments: newCommentArray,
+			// 	// commentAuthor: parsed.user.username,
+			// 	message: parsed.message
+			// })
+			// console.log(parsed.comment, 'this is message parsed')
 		}
 	}
 
@@ -106,7 +108,7 @@ class CommentThread extends Component {
 	  		articleComments: parsedResponse.comments
 	  	})
 
-	  } catch(err){
+	  } catch(err){	
 	      return(err)
 	  }
 		    
