@@ -39,8 +39,10 @@ class CommentThread extends Component {
 		})
 
 		const parsed = await saveComment.json();
+		console.log(parsed)
 		const newCommentArray = this.state.articleComments;
-		// console.log(this.state.commentAuthor, " THIS IS THE AUTHOR OF THE COMMENT")
+		// the TIME STAMP IS NULL IN THE PARSED.COMMENTS
+		console.log(parsed.comment, " THIS IS THE NEW COMMENT ARRAY")
 		newCommentArray.push(parsed.comment);
 		console.log(parsed, 'this is parsed saveComment')
 		if (parsed.status === 200) {

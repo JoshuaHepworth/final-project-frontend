@@ -6,6 +6,8 @@ import { Switch} from 'react-router-dom'
 import MyComments from './MyComments'
 import SwitchController from './SwitchController'
 
+import apiUrl from './apiUrl'
+console.log(apiUrl)
 class App extends Component {
   constructor(){
       super();

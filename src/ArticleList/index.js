@@ -174,7 +174,7 @@ class ArticleList extends Component {
      	  </div>
 	     	  
 	     	  {articleList} 
-     	 <ArticleView fix={this.fix} showArticle={this.state.showArticle}  />
+     	
      	<Link to='/article'></Link>
      	  
      	 </div>
